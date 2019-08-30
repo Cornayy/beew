@@ -1,0 +1,22 @@
+{
+  "name": "beew",
+  "version": "1.0.0",
+  "description": "TypeScript Discord bot.",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cornayy/Beew.git"
+  },
+  "author": "Cornayy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cornayy/Beew/issues"
+  },
+  "homepage": "https://github.com/Cornayy/Beew#readme",
+  "dependencies": {
+    "typescript": "^3.6.2"
+  }
+}
