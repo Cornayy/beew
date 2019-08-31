@@ -6,8 +6,8 @@ export default interface Settings {
     token?: string;
     prefix: string;
     paths: {
-        commands: './src/commands';
-        events: './src/events';
-        services: './src/services';
+        commands: string;
+        events: string;
+        services: string;
     };
 }

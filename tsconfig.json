@@ -1,7 +1,8 @@
 {
     "compilerOptions": {
         "target": "es6",
-        "types": ["node"], 
+        "types": ["node"],
+        "typeRoots": ["node_modules/@types"],
         "module": "commonjs",
         "outDir": "dist",
         "removeComments": true,
@@ -9,7 +10,7 @@
         "skipLibCheck": true,
         "strictNullChecks": true,
         "noImplicitThis": true,
-        "inlineSourceMap": true
+        "inlineSourceMap": true,
     
     },
     "include": [

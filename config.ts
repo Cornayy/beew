@@ -9,9 +9,9 @@ const settings: Settings = {
     },
     prefix: '!',
     paths: {
-        commands: './src/commands',
-        events: './src/events',
-        services: './src/services'
+        commands: 'src/commands',
+        events: 'src/events',
+        services: 'src/services'
     }
 };
 
