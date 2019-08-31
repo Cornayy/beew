@@ -1,9 +1,9 @@
 import { Message } from 'discord.js';
 import { Command } from '../Command';
-import { BeewInterface } from '../interfaces/BeewInterface';
+import { BeewClient } from '../interfaces/BeewClient';
 
 export default class Ping extends Command {
-    constructor(client: BeewInterface) {
+    constructor(client: BeewClient) {
         super(client, {
             name: 'ping',
             description: 'Pings the bot.',
@@ -14,6 +14,6 @@ export default class Ping extends Command {
     }
 
     public async run(message: Message): Promise<void> {
-        await super.respond(message.channel, 'Pong');
+        await super.respond(message.channel, 'Pong!');
     }
 }
