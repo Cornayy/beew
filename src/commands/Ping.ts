@@ -2,7 +2,7 @@ import { Message } from 'discord.js';
 import { Command } from '../Command';
 import { BeewInterface } from '../interfaces/BeewInterface';
 
-export class Ping extends Command {
+export default class Ping extends Command {
     constructor(client: BeewInterface) {
         super(client, {
             name: 'ping',

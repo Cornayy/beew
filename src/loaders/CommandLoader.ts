@@ -22,9 +22,14 @@ export class CommandLoader {
                 if (statSync(path.join(dir, cmd)).isDirectory()) {
                     this.load(client);
                 } else {
-                    const command = new (require(path.join('../../', `${dir}/${cmd}`)))(client);
+                    const Command: any = require(path.join(
+                        __dirname,
+                        '../../',
+                        `${dir}/${cmd.replace('ts', 'js')}`
+                    )).default;
+                    const command = new Command(client);
 
-                    this.commands.set(command.help.name, command);
+                    this.commands.set(command.conf.name, command);
                 }
             });
         });

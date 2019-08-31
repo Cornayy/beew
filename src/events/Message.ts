@@ -1,7 +1,7 @@
 import * as Discord from 'discord.js';
 import { Beew } from '../Beew';
 
-export class Message {
+export default class Message {
     private client: Beew;
 
     constructor(client: Beew) {

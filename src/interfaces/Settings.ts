@@ -8,6 +8,5 @@ export default interface Settings {
     paths: {
         commands: string;
         events: string;
-        services: string;
     };
 }

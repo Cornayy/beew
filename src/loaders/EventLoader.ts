@@ -11,7 +11,13 @@ export class EventLoader {
             if (err) Logger.error(err);
 
             files.forEach(evt => {
-                const event = new (require(path.join('../../', `${dir}/${evt}`)))(client);
+                const Event: any = require(path.join(
+                    __dirname,
+                    '../../',
+                    `${dir}/${evt.replace('ts', 'js')}`
+                )).default;
+
+                const event = new Event(client);
                 const eventName = evt.split('.')[0];
 
                 client.on(
