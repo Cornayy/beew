@@ -1,6 +1,5 @@
-import { User, Message, TextChannel, DMChannel, GroupDMChannel } from 'discord.js';
-import { BeewClient } from './interfaces/BeewClient';
-import CommandOptions from './interfaces/CommandOptions';
+import { User, Message } from 'discord.js';
+import { AnyChannel, BeewClient, CommandOptions } from './modules/beew';
 
 export abstract class Command {
     private client: BeewClient;
@@ -42,7 +41,7 @@ export abstract class Command {
         }, this.conf.cooldown);
     }
 
-    public respond(channel: TextChannel | DMChannel | GroupDMChannel, message: string): Command {
+    public respond(channel: AnyChannel, message: string): Command {
         channel.send(message);
 
         return this;

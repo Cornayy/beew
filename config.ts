@@ -1,4 +1,4 @@
-import Settings from './src/interfaces/Settings';
+import { Settings } from './src/modules/beew';
 
 const settings: Settings = {
     presence: {

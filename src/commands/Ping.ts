@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 import { Command } from '../Command';
-import { BeewClient } from '../interfaces/BeewClient';
+import { BeewClient } from '../modules/beew';
 
 export default class Ping extends Command {
     constructor(client: BeewClient) {

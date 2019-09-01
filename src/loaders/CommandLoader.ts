@@ -1,7 +1,7 @@
 import * as path from 'path';
 import { readdir, statSync } from 'fs';
 import { Collection } from 'discord.js';
-import { BeewClient } from '../interfaces/BeewClient';
+import { BeewClient } from '../modules/beew';
 import { Command } from '../Command';
 import Logger from '../utils/Logger';
 
