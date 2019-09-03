@@ -2,7 +2,7 @@ import { User, Message } from 'discord.js';
 import { AnyChannel, BeewClient, CommandOptions } from './modules/beew';
 
 export abstract class Command {
-    private client: BeewClient;
+    protected client: BeewClient;
     public conf: CommandOptions;
     public cooldowns: Set<User>;
 
