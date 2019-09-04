@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import * as Discord from 'discord.js';
 import { Beew } from '../Beew';
+import { Command } from '../Command';
 
 export default class Message {
     private client: Beew;
@@ -14,10 +15,10 @@ export default class Message {
 
         const args = message.content.split(/\s+/g);
         const command = args.shift()!.slice(this.client.settings.prefix.length);
-        const cmd = this.client.commandLoader.commands.get(command);
+        const cmd: Command = this.client.commandLoader.commands.get(command);
 
         if (!cmd) return;
-        if (!cmd.isAbleToUse(message.author, message)) return;
+        if (!cmd.hasPermission(message.author, message)) return;
 
         cmd.run(message, args);
 

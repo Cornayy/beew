@@ -22,7 +22,7 @@ export abstract class Command {
         this.cooldowns = new Set();
     }
 
-    public isAbleToUse(user: User, message: Message): boolean {
+    public hasPermission(user: User, message: Message): boolean {
         if (
             !this.client.userHasPermission(message.member, this.conf.requiredPermissions) ||
             this.cooldowns.has(user)
