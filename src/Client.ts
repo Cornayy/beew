@@ -1,12 +1,12 @@
-import { Client, GuildMember, PermissionString } from 'discord.js';
+import * as Discord from 'discord.js';
 import { CommandLoader } from './loaders/CommandLoader';
-import { Settings, BeewClient } from './modules/beew';
+import { ISettings, IBeewClient } from './interfaces/modules/Beew';
 
-export class Beew extends Client implements BeewClient {
-    public settings: Settings;
+export class Client extends Discord.Client implements IBeewClient {
+    public settings: ISettings;
     public commandLoader: CommandLoader;
 
-    public constructor(settings: Settings) {
+    public constructor(settings: ISettings) {
         super(settings.clientOptions || {});
 
         this.settings = settings;
@@ -16,7 +16,10 @@ export class Beew extends Client implements BeewClient {
         this.commandLoader.load(this);
     }
 
-    public userHasPermission(user: GuildMember, requiredPermissions: PermissionString[]): boolean {
+    public userHasPermission(
+        user: Discord.GuildMember,
+        requiredPermissions: Discord.PermissionString[]
+    ): boolean {
         return user.hasPermission(requiredPermissions, false, true, true);
     }
 }

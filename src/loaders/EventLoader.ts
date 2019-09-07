@@ -1,10 +1,10 @@
 import * as path from 'path';
 import { readdir } from 'fs';
-import { Beew } from '../Beew';
+import { Client } from '../Client';
 import Logger from '../utils/Logger';
 
 export class EventLoader {
-    public load(client: Beew): void {
+    public load(client: Client): void {
         const dir = client.settings.paths.events;
 
         readdir(dir, (err, files) => {

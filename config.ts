@@ -1,6 +1,6 @@
-import { Settings } from './src/modules/beew';
+import { ISettings } from './src/interfaces/modules/Beew';
 
-const settings: Settings = {
+const settings: ISettings = {
     presence: {
         game: {
             name: '!help for commands',

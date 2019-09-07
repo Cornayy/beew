@@ -1,9 +1,9 @@
 import { Message } from 'discord.js';
 import { Command } from '../Command';
-import { BeewClient } from '../modules/beew';
+import { IBeewClient } from '../interfaces/modules/Beew';
 
 export default class Ping extends Command {
-    constructor(client: BeewClient) {
+    constructor(client: IBeewClient) {
         super(client, {
             name: 'ping',
             description: 'Pings the bot.',

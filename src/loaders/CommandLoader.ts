@@ -1,7 +1,7 @@
 import * as path from 'path';
 import { readdir, statSync } from 'fs';
 import { Collection } from 'discord.js';
-import { BeewClient } from '../modules/beew';
+import { IBeewClient } from '../interfaces/modules/Beew';
 import { Command } from '../Command';
 import Logger from '../utils/Logger';
 
@@ -12,7 +12,7 @@ export class CommandLoader {
         this.commands = new Collection();
     }
 
-    public load(client: BeewClient): void {
+    public load(client: IBeewClient): void {
         const dir = client.settings.paths.commands;
 
         readdir(dir, (err, files) => {

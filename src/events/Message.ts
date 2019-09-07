@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import * as Discord from 'discord.js';
-import { Beew } from '../Beew';
-import { Command } from '../Command';
+import { Client } from '../Client';
 
 export default class Message {
-    private client: Beew;
+    private client: Client;
 
-    constructor(client: Beew) {
+    constructor(client: Client) {
         this.client = client;
     }
 
@@ -15,7 +14,7 @@ export default class Message {
 
         const args = message.content.split(/\s+/g);
         const command = args.shift()!.slice(this.client.settings.prefix.length);
-        const cmd: Command = this.client.commandLoader.commands.get(command);
+        const cmd = this.client.commandLoader.commands.get(command);
 
         if (!cmd) return;
         if (!cmd.hasPermission(message.author, message)) return;

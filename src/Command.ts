@@ -1,12 +1,12 @@
 import { User, Message } from 'discord.js';
-import { AnyChannel, BeewClient, CommandOptions } from './modules/beew';
+import { AnyChannel, IBeewClient, ICommandOptions } from './interfaces/modules/Beew';
 
 export abstract class Command {
-    protected client: BeewClient;
-    public conf: CommandOptions;
+    protected client: IBeewClient;
+    public conf: ICommandOptions;
     public cooldowns: Set<User>;
 
-    constructor(client: BeewClient, options: CommandOptions) {
+    constructor(client: IBeewClient, options: ICommandOptions) {
         this.client = client;
 
         this.conf = {

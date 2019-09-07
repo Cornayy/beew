@@ -8,13 +8,13 @@ import {
     ClientOptions
 } from 'discord.js';
 
-export interface BeewClient {
-    settings: Settings;
+export interface IBeewClient {
+    settings: ISettings;
     commandLoader: any;
     userHasPermission(user: GuildMember, requiredPermissions: PermissionString[]): boolean;
 }
 
-export interface CommandOptions {
+export interface ICommandOptions {
     name: string;
     description?: string;
     usage?: string;
@@ -24,7 +24,7 @@ export interface CommandOptions {
     requiredPermissions: PermissionString[];
 }
 
-export interface Settings {
+export interface ISettings {
     presence: PresenceData;
     clientOptions?: ClientOptions;
     token?: string;

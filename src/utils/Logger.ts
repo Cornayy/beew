@@ -1,9 +1,9 @@
 export default class Logger {
-    public static info(msg: NodeJS.ErrnoException): void {
+    public static info(msg: string): void {
         console.log(`\x1b[37;42minfo\x1b[32;49m ${msg}\x1b[0m`);
     }
 
-    public static warn(msg: NodeJS.ErrnoException): void {
+    public static warn(msg: string): void {
         console.log(`\x1b[37;43mwarn\x1b[33;49m ${msg}\x1b[0m`);
     }
 
