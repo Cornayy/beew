@@ -1,8 +1,8 @@
 import { Client, GuildMember, PermissionString } from 'discord.js';
 import { CommandLoader } from './loaders/CommandLoader';
-import { Settings } from './modules/beew';
+import { Settings, BeewClient } from './modules/beew';
 
-export class Beew extends Client {
+export class Beew extends Client implements BeewClient {
     public settings: Settings;
     public commandLoader: CommandLoader;
 
