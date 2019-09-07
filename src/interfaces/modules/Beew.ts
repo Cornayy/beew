@@ -5,7 +5,8 @@ import {
     GuildMember,
     PermissionString,
     PresenceData,
-    ClientOptions
+    ClientOptions,
+    Message
 } from 'discord.js';
 
 export interface IBeewClient {
@@ -33,6 +34,11 @@ export interface ISettings {
         commands: string;
         events: string;
     };
+}
+
+export interface IEvent {
+    client: IBeewClient;
+    run(message?: Message): void;
 }
 
 export type AnyChannel = TextChannel | DMChannel | GroupDMChannel;
