@@ -11,8 +11,8 @@ export default class GuildMemberRemove implements IEvent {
         this.client = client;
     }
 
-    async run(args: any[]): Promise<void> {
-        const member: GuildMember = args.shift();
+    async run(args: any): Promise<void> {
+        const member: GuildMember = args;
 
         try {
             const { id } = member.guild;

@@ -10,8 +10,9 @@ export default class Message implements IEvent {
         this.client = client;
     }
 
-    run(args: any[]): void {
-        const message: Discord.Message = args.shift();
+    run(args: any): void {
+        const message: Discord.Message = args;
+
         if (message.author.bot || !message.content.startsWith(this.client.settings.prefix)) return;
 
         const argus = message.content.split(/\s+/g);
