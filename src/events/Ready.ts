@@ -12,8 +12,9 @@ export default class Ready implements IEvent {
 
     async run(): Promise<void> {
         Logger.info('Beew is running.');
-
         this.client.user.setPresence(this.client.settings.presence);
-        connectToDatabase();
+
+        await connectToDatabase();
+        await this.client.updateGuilds();
     }
 }

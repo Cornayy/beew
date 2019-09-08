@@ -38,7 +38,7 @@ export interface ISettings {
 
 export interface IEvent {
     client: IBeewClient;
-    run(message?: Message): void;
+    run(args?: any[]): void;
 }
 
 export type AnyChannel = TextChannel | DMChannel | GroupDMChannel;

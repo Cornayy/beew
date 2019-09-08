@@ -1,7 +1,6 @@
 import { Message } from 'discord.js';
 import { Command } from '../Command';
 import { IBeewClient } from '../interfaces/modules/Beew';
-import Logger from '../utils/Logger';
 
 export default class Ping extends Command {
     constructor(client: IBeewClient) {
@@ -14,7 +13,8 @@ export default class Ping extends Command {
         });
     }
 
-    public async run(message: Message, args: String[]): Promise<void> {
-        Logger.info('Method not implemented.');
+    public async run(message: Message, args: string[]): Promise<void> {
+        message.channel.send('Thank');
+        console.log(args);
     }
 }
