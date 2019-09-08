@@ -25,6 +25,11 @@ export class Client extends Discord.Client implements IBeewClient {
         return user.hasPermission(requiredPermissions, false, true, true);
     }
 
+    /**
+     * Compares the client's guilds with the database's guilds.
+     * Updates all the missing guilds.
+     * @returns {void}
+     */
     async updateGuilds(): Promise<void> {
         try {
             const guilds = (await GuildModel.find({}).exec()).map(guild => guild.id);
@@ -52,6 +57,11 @@ export class Client extends Discord.Client implements IBeewClient {
         }
     }
 
+    /**
+     * Compares all the users of the client's guilds with the guild's users in the database.
+     * Updates all the missing users.
+     * @returns {void}
+     */
     async updateGuildMembers(): Promise<void> {
         try {
             const guilds = await GuildModel.find({}).exec();
