@@ -3,7 +3,6 @@ import { IUser, IKarma, IGuild } from '../interfaces/modules/Guild';
 import Logger from '../utils/Logger';
 
 const Karma = new Mongoose.Schema<IKarma>({
-    id: String,
     reason: String,
     by: String,
     date: Date

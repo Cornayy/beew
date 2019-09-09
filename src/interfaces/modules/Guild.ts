@@ -6,7 +6,6 @@ export interface IUser {
 }
 
 export interface IKarma {
-    id: string;
     reason: string;
     by: string;
     date: Date;

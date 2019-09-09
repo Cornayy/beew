@@ -21,7 +21,7 @@ export default class GuildMemberRemove implements IEvent {
             if (guild) {
                 guild.users = guild.users.filter(user => user.id !== member.id);
 
-                guild.save();
+                await guild.save();
             }
         } catch (e) {
             Logger.error(e);

@@ -1,5 +1,10 @@
 import { User, Message } from 'discord.js';
-import { AnyChannel, IBeewClient, ICommandOptions } from './interfaces/modules/Beew';
+import {
+    AnyChannel,
+    IBeewClient,
+    ICommandOptions,
+    EmbedOrMessage
+} from './interfaces/modules/Beew';
 
 export abstract class Command {
     protected client: IBeewClient;
@@ -41,7 +46,7 @@ export abstract class Command {
         }, this.conf.cooldown);
     }
 
-    public respond(channel: AnyChannel, message: string): Command {
+    public respond(channel: AnyChannel, message: EmbedOrMessage): Command {
         channel.send(message);
 
         return this;

@@ -5,7 +5,8 @@ import {
     GuildMember,
     PermissionString,
     PresenceData,
-    ClientOptions
+    ClientOptions,
+    RichEmbed
 } from 'discord.js';
 
 export interface IBeewClient {
@@ -42,3 +43,4 @@ export interface IEvent {
 }
 
 export type AnyChannel = TextChannel | DMChannel | GroupDMChannel;
+export type EmbedOrMessage = RichEmbed | string;

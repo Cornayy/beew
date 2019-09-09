@@ -24,7 +24,7 @@ export default class GuildMemberAdd implements IEvent {
                     karma: []
                 });
 
-                guild.save();
+                await guild.save();
             }
         } catch (e) {
             Logger.error(e);

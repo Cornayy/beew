@@ -13,7 +13,9 @@ export default class Ping extends Command {
         });
     }
 
-    public async run(message: Message): Promise<void> {
+    public async run(message: Message): Promise<boolean> {
         await super.respond(message.channel, 'Pong!');
+
+        return true;
     }
 }
