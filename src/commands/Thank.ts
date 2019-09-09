@@ -1,4 +1,4 @@
-import { Message, GuildMember } from 'discord.js';
+import { Message } from 'discord.js';
 import { Command } from '../Command';
 import { IBeewClient } from '../interfaces/modules/Beew';
 import { GuildModel } from '../database/Database';
