@@ -19,7 +19,8 @@ export default class Help extends Command {
         const embed = new RichEmbed()
             .setTitle('Help')
             .setDescription(
-                `${this.conf.description}, the prefix used for commands is: '${this.client.settings.prefix}'.`
+                `${this.conf.description}, the prefix used for commands is: '${this.client.settings.prefix}'.
+                 You can also check the usage of a command with !usage command.`
             )
             .setColor(0x00b405)
             .setFooter(
