@@ -6,12 +6,14 @@ import {
     PermissionString,
     PresenceData,
     ClientOptions,
-    RichEmbed
+    RichEmbed,
+    User
 } from 'discord.js';
 
 export interface IBeewClient {
     settings: ISettings;
     commandLoader: any;
+    user: User;
     userHasPermission(user: GuildMember, requiredPermissions: PermissionString[]): boolean;
     updateGuilds(): Promise<void>;
 }
