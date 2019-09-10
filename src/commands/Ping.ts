@@ -8,6 +8,7 @@ export default class Ping extends Command {
             name: 'ping',
             description: 'Pings the bot.',
             category: 'Information',
+            usage: '!ping',
             cooldown: 1000,
             requiredPermissions: ['READ_MESSAGES']
         });

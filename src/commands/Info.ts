@@ -10,6 +10,7 @@ export default class Info extends Command {
             name: 'info',
             description: 'Retrieves user information.',
             category: 'Information',
+            usage: '!info @user',
             cooldown: 1000,
             requiredPermissions: ['READ_MESSAGES']
         });
@@ -19,7 +20,7 @@ export default class Info extends Command {
         const member = message.mentions.members.first();
 
         if (!member) {
-            super.respond(message.channel, 'You have not specified a user.');
+            await super.respond(message.channel, 'You have not specified a user.');
             return false;
         }
 
@@ -47,11 +48,11 @@ export default class Info extends Command {
                             message.author.avatarURL
                         );
 
-                    super.respond(message.channel, embed);
+                    await super.respond(message.channel, embed);
                     return true;
                 }
             } else {
-                super.respond(message.channel, 'Something went wrong.');
+                await super.respond(message.channel, 'Something went wrong.');
             }
         } catch (e) {
             Logger.error(e);

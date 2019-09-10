@@ -19,7 +19,6 @@ export abstract class Command {
             description: options.description || 'No information specified.',
             usage: options.usage || '',
             category: options.category || 'Information',
-            args: options.args || [],
             cooldown: options.cooldown || 1000,
             requiredPermissions: options.requiredPermissions || ['READ_MESSAGES']
         };

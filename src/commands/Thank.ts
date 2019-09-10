@@ -1,4 +1,4 @@
-import { Message, GuildMember } from 'discord.js';
+import { Message } from 'discord.js';
 import { Command } from '../Command';
 import { IBeewClient } from '../interfaces/modules/Beew';
 import { GuildModel } from '../database/Database';
@@ -10,18 +10,22 @@ export default class Ping extends Command {
             name: 'thank',
             description: 'Thanks a user and give them karma.',
             category: 'Utility',
+            usage: '!thank @user <reason>',
             cooldown: 86400000,
             requiredPermissions: ['READ_MESSAGES']
         });
     }
 
     public async run(message: Message, args: any[]): Promise<boolean> {
-        const id: string = args[0];
+        const [id] = args;
         const reason = args.slice(1).join(' ');
         const member = message.guild.members.get(id.replace(/[\\<>@#&!]/g, ''));
 
-        if (!member || !reason) {
-            super.respond(message.channel, 'You have not specified a member or reason.');
+        if (!member || !reason || member.user === message.author) {
+            await super.respond(
+                message.channel,
+                'You have not specified a member or reason. Or did you try thanking yourself? :thinking:'
+            );
             return false;
         }
 
@@ -36,12 +40,12 @@ export default class Ping extends Command {
                     user.karma.push({ reason: reason, by: message.member.id, date: new Date() });
 
                     await guild.save();
-                    super.respond(message.channel, `${member.user} has gained 1 karma.`);
+                    await super.respond(message.channel, `${member.user} has gained 1 karma.`);
 
                     return true;
                 }
             } else {
-                super.respond(message.channel, 'Something went wrong.');
+                await super.respond(message.channel, 'Something went wrong.');
             }
         } catch (e) {
             Logger.error(e);

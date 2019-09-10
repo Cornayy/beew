@@ -23,7 +23,6 @@ export interface ICommandOptions {
     description?: string;
     usage?: string;
     category?: string;
-    args?: string[];
     cooldown: number;
     requiredPermissions: PermissionString[];
 }

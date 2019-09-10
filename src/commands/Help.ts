@@ -8,6 +8,7 @@ export default class Help extends Command {
             name: 'help',
             description: 'Displays all the commands.',
             category: 'Information',
+            usage: '!help',
             cooldown: 1000,
             requiredPermissions: ['READ_MESSAGES']
         });
