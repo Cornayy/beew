@@ -2,6 +2,7 @@
 import * as Discord from 'discord.js';
 import { Client } from '../Client';
 import { IEvent } from '../interfaces/modules/Beew';
+import Logger from '../utils/Logger';
 
 export default class Message implements IEvent {
     public client: Client;
@@ -10,7 +11,7 @@ export default class Message implements IEvent {
         this.client = client;
     }
 
-    run(args: any): void {
+    async run(args: any): Promise<void> {
         const message: Discord.Message = args;
 
         if (message.author.bot || !message.content.startsWith(this.client.settings.prefix)) return;
@@ -22,8 +23,6 @@ export default class Message implements IEvent {
         if (!cmd) return;
         if (!cmd.hasPermission(message.author, message)) return;
 
-        cmd.run(message, argus)
-            ? cmd.setCooldown(message.author)
-            : cmd.cooldowns.delete(message.author);
+        if (await cmd.run(message, argus)) cmd.setCooldown(message.author);
     }
 }

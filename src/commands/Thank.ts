@@ -1,4 +1,4 @@
-import { Message } from 'discord.js';
+import { Message, GuildMember } from 'discord.js';
 import { Command } from '../Command';
 import { IBeewClient } from '../interfaces/modules/Beew';
 import { GuildModel } from '../database/Database';
@@ -15,9 +15,10 @@ export default class Ping extends Command {
         });
     }
 
-    public async run(message: Message, args: string[]): Promise<boolean> {
-        const member = message.mentions.members.first();
+    public async run(message: Message, args: any[]): Promise<boolean> {
+        const id: string = args[0];
         const reason = args.slice(1).join(' ');
+        const member = message.guild.members.get(id.replace(/[\\<>@#&!]/g, ''));
 
         if (!member || !reason) {
             super.respond(message.channel, 'You have not specified a member or reason.');
