@@ -36,7 +36,11 @@ export default class Info extends Command {
                         .setDescription(this.conf.description)
                         .setColor(0x00b405)
                         .setThumbnail(member.user.avatarURL)
-                        .addField('Currently Playing', member.user.presence.game, true)
+                        .addField(
+                            'Currently Playing',
+                            member.user.presence.game ? member.user.presence.game : 'Nothing',
+                            true
+                        )
                         .addField('Karma', user.karma.length, true)
                         .setFooter(
                             `${message.author.username} at ${new Date().toDateString()}`,
