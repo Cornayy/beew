@@ -51,7 +51,6 @@ export class Client extends Discord.Client implements IBeewClient {
                 });
 
             Logger.info('Synced guilds.');
-            await this.updateGuildMembers();
         } catch (e) {
             Logger.error(e);
         }
@@ -82,8 +81,8 @@ export class Client extends Discord.Client implements IBeewClient {
                     });
 
                 await GuildModel.updateOne({ id: guild.id }, guild);
-                Logger.info('Synced guild members.');
             });
+            Logger.info('Synced guild members.');
         } catch (e) {
             Logger.error(e);
         }
