@@ -9,6 +9,7 @@ import {
 export abstract class Command {
     protected client: IBeewClient;
     public conf: ICommandOptions;
+    // TODO: key: guild value: user.
     public cooldowns: Set<User>;
 
     constructor(client: IBeewClient, options: ICommandOptions) {
