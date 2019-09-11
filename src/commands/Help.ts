@@ -29,7 +29,7 @@ export default class Help extends Command {
             );
 
         commands.forEach((command: Command) =>
-            embed.addField(command.conf.name, `*${command.conf.category}*`, true)
+            embed.addField(command.conf.name, `*${command.conf.usage}*`, true)
         );
 
         await super.respond(message.channel, embed);
