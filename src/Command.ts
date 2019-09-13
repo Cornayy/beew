@@ -32,7 +32,9 @@ export abstract class Command {
             !this.client.userHasPermission(message.member, this.conf.requiredPermissions) ||
             this.cooldowns.has(user)
         ) {
-            message.channel.send('No permission or on cooldown.');
+            message.channel.send(
+                "You don't have permission for this command or you are on cooldown."
+            );
             return false;
         }
         return true;
