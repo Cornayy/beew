@@ -34,7 +34,7 @@ export default class Info extends Command {
                 if (user) {
                     const lastKarma = user.karma
                         .map(karma => karma)
-                        .sort((a, b) => (a.date > b.date ? 1 : -1))[0];
+                        .sort((a, b) => (a.date > b.date ? 1 : -1))[user.karma.length];
                     const lastKarmaBy = await message.guild.fetchMember(lastKarma.by);
 
                     const embed = new RichEmbed()
