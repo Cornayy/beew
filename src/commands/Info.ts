@@ -32,6 +32,11 @@ export default class Info extends Command {
                 const user = guild.users.find(user => user.id === member.id);
 
                 if (user) {
+                    const lastKarma = user.karma
+                        .map(karma => karma)
+                        .sort((a, b) => (a.date > b.date ? 1 : -1))[0];
+                    const lastKarmaBy = await message.guild.fetchMember(lastKarma.by);
+
                     const embed = new RichEmbed()
                         .setTitle('User Information')
                         .setDescription(this.conf.description)
@@ -43,6 +48,10 @@ export default class Info extends Command {
                             true
                         )
                         .addField('Karma', user.karma.length, true)
+                        .addField(
+                            'Last Karma',
+                            `By: **${lastKarmaBy.user.username}**: *${lastKarma.reason}*`
+                        )
                         .setFooter(
                             `${message.author.username} at ${new Date().toDateString()}`,
                             message.author.avatarURL
