@@ -21,7 +21,9 @@ export default class RandomGif extends Command {
             const response = await this.getResponse(args);
             const json = await response.json();
 
-            super.respond(message.channel, json.data.url);
+            json
+                ? super.respond(message.channel, json.data.url)
+                : super.respond(message.channel, 'No gif found.');
 
             return true;
         } catch (e) {
