@@ -18,7 +18,7 @@ export default class Leaderboard extends Command {
 
     public async run(message: Message): Promise<boolean> {
         try {
-            const guild = await GuildModel.findOne({ id: message.guild }).exec();
+            const guild = await GuildModel.findOne({ id: message.guild.id }).exec();
 
             if (guild) {
                 const { users } = guild;
