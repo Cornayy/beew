@@ -66,21 +66,23 @@ export class Client extends Discord.Client implements IBeewClient {
             const guilds = await GuildModel.find({}).exec();
 
             guilds.forEach(async guild => {
-                const actualMembers = this.guilds
-                    .find(clientGuild => clientGuild.id === guild.id)
-                    .members.map(user => user.id);
-                const members = guild.users.map(user => user.id);
+                const actualGuild = this.guilds.find(clientGuild => clientGuild.id === guild.id);
 
-                actualMembers
-                    .filter(user => !members.includes(user))
-                    .forEach(id => {
-                        guild.users.push({
-                            id: id,
-                            karma: []
+                if (actualGuild) {
+                    const actualMembers = actualGuild.members.map(user => user.id);
+                    const members = guild.users.map(user => user.id);
+
+                    actualMembers
+                        .filter(user => !members.includes(user))
+                        .forEach(id => {
+                            guild.users.push({
+                                id: id,
+                                karma: []
+                            });
                         });
-                    });
 
-                await GuildModel.updateOne({ id: guild.id }, guild);
+                    await GuildModel.updateOne({ id: guild.id }, guild);
+                }
             });
             Logger.info('Synced guild members.');
         } catch (e) {
