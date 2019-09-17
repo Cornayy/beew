@@ -22,15 +22,21 @@ export default class Leaderboard extends Command {
 
             if (guild) {
                 const { users } = guild;
-                const sortedUsers = users.sort((a, b) => (a.karma > b.karma ? 1 : -1));
+                const sortedUsers = users.sort((a, b) =>
+                    a.karma.length < b.karma.length ? 1 : -1
+                );
                 const embed = new RichEmbed()
                     .setTitle('User Information')
                     .setDescription(this.conf.description)
                     .setColor(0x00b405);
 
-                sortedUsers.forEach(async user => {
+                await sortedUsers.forEach(async user => {
                     const guildUser = await message.guild.fetchMember(user.id);
-                    embed.addField(guildUser.user.username, user.karma);
+                    embed.addField(
+                        guildUser.nickname ? guildUser.nickname : guildUser.user.username,
+                        user.karma.length,
+                        false
+                    );
                 });
 
                 super.respond(message.channel, embed);
