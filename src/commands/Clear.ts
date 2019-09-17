@@ -1,7 +1,7 @@
 import { Message } from 'discord.js';
-import { Command } from '../../Command';
-import { IBeewClient } from '../../interfaces/modules/Beew';
-import Logger from '../../utils/Logger';
+import { Command } from '../Command';
+import { IBeewClient } from '../interfaces/modules/Beew';
+import Logger from '../utils/Logger';
 
 export default class Clear extends Command {
     constructor(client: IBeewClient) {

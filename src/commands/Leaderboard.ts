@@ -1,8 +1,8 @@
 import { Message, RichEmbed } from 'discord.js';
-import { Command } from '../../Command';
-import { IBeewClient } from '../../interfaces/modules/Beew';
-import Logger from '../../utils/Logger';
-import { GuildModel } from '../../database/Database';
+import { Command } from '../Command';
+import { IBeewClient } from '../interfaces/modules/Beew';
+import Logger from '../utils/Logger';
+import { GuildModel } from '../database/Database';
 
 export default class Leaderboard extends Command {
     constructor(client: IBeewClient) {

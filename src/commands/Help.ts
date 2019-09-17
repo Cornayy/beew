@@ -1,6 +1,6 @@
 import { Message, RichEmbed } from 'discord.js';
-import { Command } from '../../Command';
-import { IBeewClient } from '../../interfaces/modules/Beew';
+import { Command } from '../Command';
+import { IBeewClient } from '../interfaces/modules/Beew';
 
 export default class Help extends Command {
     constructor(client: IBeewClient) {
