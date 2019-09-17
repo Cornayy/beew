@@ -39,7 +39,7 @@ export default class Leaderboard extends Command {
                     );
                 });
 
-                super.respond(message.channel, embed);
+                await super.respond(message.channel, embed);
                 return true;
             }
         } catch (e) {
