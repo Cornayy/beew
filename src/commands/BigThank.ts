@@ -18,7 +18,7 @@ export default class Thank extends Command {
 
     public async run(message: Message, args: any[]): Promise<boolean> {
         const [id] = args;
-        const amount = args[1];
+        const amount = parseInt(args[1], 10);
         const reason = args.slice(2).join(' ');
         const member = message.guild.members.get(id.replace(/[\\<>@#&!]/g, ''));
 
