@@ -22,17 +22,21 @@ export default class Kick extends Command {
 
         try {
             const dmChannel = await member.createDM();
-            const invite = await message.guild.channels
-                .first()
-                .createInvite({ maxAge: 0, maxUses: 1 });
+            const channel = await message.guild.channels.find(ch => ch.name === 'general');
 
-            dmChannel.send(
-                `You got kicked from: ${message.guild.name}. But here is an invite back since this is not serious.`
-            );
-            dmChannel.send(invite);
+            if (channel) {
+                const invite = await channel.createInvite({ maxAge: 0, maxUses: 1 });
+
+                await dmChannel.send(
+                    `You got kicked from: ${message.guild.name}. But here is an invite back since this is not serious.`
+                );
+                await dmChannel.send(`Here is your invite: ${invite}`);
+            }
 
             await member.kick();
-            await super.respond(message.channel, `Succesfully kicked ${member.user.tag}.`);
+            await super.respond(message.channel, `Succesfully kicked ${member}.`);
+
+            return true;
         } catch (err) {
             Logger.error(err);
         }
