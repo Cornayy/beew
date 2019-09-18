@@ -1,4 +1,5 @@
 import {
+    Client,
     TextChannel,
     DMChannel,
     GroupDMChannel,
@@ -6,14 +7,12 @@ import {
     PermissionString,
     PresenceData,
     ClientOptions,
-    RichEmbed,
-    User
+    RichEmbed
 } from 'discord.js';
 
-export interface IBeewClient {
+export interface IBeewClient extends Client {
     settings: ISettings;
     commandLoader: any;
-    user: User;
     userHasPermission(user: GuildMember, requiredPermissions: PermissionString[]): boolean;
     updateGuilds(): Promise<void>;
 }
