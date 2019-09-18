@@ -4,7 +4,7 @@ import { IBeewClient } from '../interfaces/modules/Beew';
 import { GuildModel } from '../database/Database';
 import Logger from '../utils/Logger';
 
-export default class Thank extends Command {
+export default class BigThank extends Command {
     constructor(client: IBeewClient) {
         super(client, {
             name: 'bigthank',
