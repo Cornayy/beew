@@ -30,7 +30,8 @@ export abstract class Command {
     public hasPermission(user: User, message: Message): boolean {
         if (
             !this.client.userHasPermission(message.member, this.conf.requiredPermissions) ||
-            this.cooldowns.has({ user: user, guild: message.guild })
+            [...this.cooldowns].filter(cd => cd.user === user && cd.guild === message.guild)
+                .length > 0
         ) {
             message.channel.send(
                 "You don't have permission for this command or you are on cooldown."
@@ -44,7 +45,10 @@ export abstract class Command {
         this.cooldowns.add({ user, guild });
 
         setTimeout(() => {
-            this.cooldowns.delete({ user, guild });
+            const cooldown = [...this.cooldowns].filter(
+                cd => cd.user === user && cd.guild === guild
+            )[0];
+            this.cooldowns.delete(cooldown);
         }, this.conf.cooldown);
     }
 

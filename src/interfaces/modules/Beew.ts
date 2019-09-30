@@ -8,8 +8,8 @@ import {
     PresenceData,
     ClientOptions,
     RichEmbed,
-    User,
-    Guild
+    Guild,
+    User
 } from 'discord.js';
 
 export interface IBeewClient extends Client {
