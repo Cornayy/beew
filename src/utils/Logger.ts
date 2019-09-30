@@ -8,6 +8,6 @@ export default class Logger {
     }
 
     public static error(msg: NodeJS.ErrnoException): void {
-        console.error(`\x1b[37;41merror\x1b[31;49m ${msg}\x1b[0m`);
+        console.error(`\x1b[37;41merror\x1b[31;49m ${msg.stack}\x1b[0m`);
     }
 }

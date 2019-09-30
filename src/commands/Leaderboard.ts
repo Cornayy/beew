@@ -8,7 +8,7 @@ export default class Leaderboard extends Command {
     constructor(client: IBeewClient) {
         super(client, {
             name: 'leaderboard',
-            description: 'Sends a leaderboard of users sorted by karma.',
+            description: 'Sends a leaderboard of top ten users sorted by karma.',
             category: 'Information',
             usage: '!leaderboard',
             cooldown: 1000,
@@ -22,9 +22,9 @@ export default class Leaderboard extends Command {
 
             if (guild) {
                 const { users } = guild;
-                const sortedUsers = users.sort((a, b) =>
-                    a.karma.length < b.karma.length ? 1 : -1
-                );
+                const sortedUsers = users
+                    .sort((a, b) => (a.karma.length < b.karma.length ? 1 : -1))
+                    .slice(0, 10);
                 const embed = new RichEmbed()
                     .setTitle('User Information')
                     .setDescription(this.conf.description)
