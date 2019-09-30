@@ -7,7 +7,9 @@ import {
     PermissionString,
     PresenceData,
     ClientOptions,
-    RichEmbed
+    RichEmbed,
+    User,
+    Guild
 } from 'discord.js';
 
 export interface IBeewClient extends Client {
@@ -40,6 +42,11 @@ export interface ISettings {
 export interface IEvent {
     client: IBeewClient;
     run(args?: any[]): void;
+}
+
+export interface IUserCooldown {
+    user: User;
+    guild: Guild;
 }
 
 export type AnyChannel = TextChannel | DMChannel | GroupDMChannel;

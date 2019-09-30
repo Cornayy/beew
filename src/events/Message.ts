@@ -22,6 +22,6 @@ export default class Message implements IEvent {
         if (!cmd) return;
         if (!cmd.hasPermission(message.author, message)) return;
 
-        if (await cmd.run(message, argus)) cmd.setCooldown(message.author);
+        if (await cmd.run(message, argus)) cmd.setCooldown(message.author, message.guild);
     }
 }
