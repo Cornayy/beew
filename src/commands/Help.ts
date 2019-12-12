@@ -18,7 +18,9 @@ export default class Help extends Command {
         const { commands } = this.client.commandLoader;
         const embed = new RichEmbed()
             .setTitle('Help')
-            .setDescription('You can check the usage of a command with the !usage command.')
+            .setDescription(
+                `You can check the usage of a command with the ${this.client.settings.prefix}usage command.`
+            )
             .setColor(0x00b405)
             .setFooter(
                 `${this.client.user.username} at ${new Date().toDateString()}`,
