@@ -9,7 +9,7 @@ export default class Kick extends Command {
             name: 'kick',
             description: 'Kicks the user, then reinvites in DM.',
             category: 'Information',
-            usage: '!kick @user',
+            usage: `${client.settings.prefix}kick @user`,
             cooldown: 1000,
             requiredPermissions: ['ADMINISTRATOR']
         });

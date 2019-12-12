@@ -10,7 +10,7 @@ export default class Thank extends Command {
             name: 'thank',
             description: 'Thanks a user and give them karma.',
             category: 'Utility',
-            usage: '!thank @user <reason>',
+            usage: `${client.settings.prefix}thank @user <reason>`,
             cooldown: 86400000,
             requiredPermissions: ['READ_MESSAGES']
         });

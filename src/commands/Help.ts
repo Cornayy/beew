@@ -8,7 +8,7 @@ export default class Help extends Command {
             name: 'help',
             description: 'Displays all the commands.',
             category: 'Information',
-            usage: '!help',
+            usage: `${client.settings.prefix}help`,
             cooldown: 1000,
             requiredPermissions: ['READ_MESSAGES']
         });

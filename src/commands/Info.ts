@@ -10,7 +10,7 @@ export default class Info extends Command {
             name: 'info',
             description: 'Retrieves user information.',
             category: 'Information',
-            usage: '!info @user',
+            usage: `${client.settings.prefix}info @user`,
             cooldown: 1000,
             requiredPermissions: ['READ_MESSAGES']
         });

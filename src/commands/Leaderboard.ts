@@ -10,7 +10,7 @@ export default class Leaderboard extends Command {
             name: 'leaderboard',
             description: 'Sends a leaderboard of top ten users sorted by karma.',
             category: 'Information',
-            usage: '!leaderboard',
+            usage: `${client.settings.prefix}leaderboard`,
             cooldown: 1000,
             requiredPermissions: ['READ_MESSAGES']
         });

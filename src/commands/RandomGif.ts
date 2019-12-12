@@ -10,7 +10,7 @@ export default class RandomGif extends Command {
             name: 'randomgif',
             description: 'Sends a random gif.',
             category: 'Utility',
-            usage: '!randomgif <tag> (optional)',
+            usage: `${client.settings.prefix}randomgif <tag> (optional)`,
             cooldown: 1000,
             requiredPermissions: ['READ_MESSAGES']
         });

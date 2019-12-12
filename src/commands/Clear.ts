@@ -9,7 +9,7 @@ export default class Clear extends Command {
             name: 'clear',
             description: 'Clears the specified amount of messages.',
             category: 'Utility',
-            usage: '!clear <amount>',
+            usage: `${client.settings.prefix}clear <amount>`,
             cooldown: 1000,
             requiredPermissions: ['ADMINISTRATOR']
         });

@@ -8,7 +8,7 @@ export default class Source extends Command {
             name: 'source',
             description: 'Sends a link to the source code.',
             category: 'Information',
-            usage: '!source',
+            usage: `${client.settings.prefix}source`,
             cooldown: 1000,
             requiredPermissions: ['READ_MESSAGES']
         });

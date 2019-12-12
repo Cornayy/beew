@@ -8,7 +8,7 @@ export default class Usage extends Command {
             name: 'usage',
             description: 'Shows the usage of a command',
             category: 'Information',
-            usage: '!usage <command>',
+            usage: `${client.settings.prefix}usage <command>`,
             cooldown: 1000,
             requiredPermissions: ['READ_MESSAGES']
         });

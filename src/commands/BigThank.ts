@@ -10,7 +10,7 @@ export default class BigThank extends Command {
             name: 'bigthank',
             description: 'Thanks a user and give them a specified amount of karma.',
             category: 'Utility',
-            usage: '!thank @user <amount> <reason>',
+            usage: `${client.settings.prefix}thank @user <amount> <reason>`,
             cooldown: 1000,
             requiredPermissions: ['ADMINISTRATOR']
         });
