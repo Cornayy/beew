@@ -25,7 +25,7 @@ export default class Message implements IEvent {
 
         try {
             await cmd.run(message, argus);
-            cmd.setCooldown(message.author);
+            cmd.setCooldown(message.author, message.guild);
         } catch (e) {
             Logger.warn(e);
         }

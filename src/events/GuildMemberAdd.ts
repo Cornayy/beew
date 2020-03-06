@@ -18,7 +18,7 @@ export default class GuildMemberAdd implements IEvent {
             const { id } = member.guild;
             const guild = await GuildModel.findOne({ id: id }).exec();
 
-            if (guild) {
+            if (guild && !guild.users.find(user => user.id === member.id)) {
                 guild.users.push({
                     id: member.id,
                     karma: []

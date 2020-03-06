@@ -7,7 +7,7 @@ const settings: ISettings = {
             type: 'PLAYING'
         }
     },
-    prefix: '!',
+    prefix: '~',
     paths: {
         commands: 'src/commands',
         events: 'src/events'

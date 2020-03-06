@@ -16,5 +16,6 @@ export default class Ready implements IEvent {
 
         await connectToDatabase();
         await this.client.updateGuilds();
+        await this.client.updateGuildMembers();
     }
 }

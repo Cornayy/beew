@@ -10,7 +10,7 @@ export default class RandomGif extends Command {
             name: 'randomgif',
             description: 'Sends a random gif.',
             category: 'Utility',
-            usage: '!randomgif <tag> (optional)',
+            usage: `${client.settings.prefix}randomgif <tag> (optional)`,
             cooldown: 1000,
             requiredPermissions: ['READ_MESSAGES']
         });
@@ -21,7 +21,9 @@ export default class RandomGif extends Command {
             const response = await this.getResponse(args);
             const json = await response.json();
 
-            super.respond(message.channel, json.data.url);
+            json
+                ? await super.respond(message.channel, json.data.url)
+                : await super.respond(message.channel, 'No gif found.');
         } catch (e) {
             Logger.error(e);
             throw new Error(e);

@@ -1,16 +1,16 @@
-import { User, Message } from 'discord.js';
+import { User, Message, Guild } from 'discord.js';
 import {
     AnyChannel,
     IBeewClient,
     ICommandOptions,
-    EmbedOrMessage
+    EmbedOrMessage,
+    IUserCooldown
 } from './interfaces/modules/Beew';
 
 export abstract class Command {
     protected client: IBeewClient;
     public conf: ICommandOptions;
-    // TODO: key: guild value: user.
-    public cooldowns: Set<User>;
+    public cooldowns: Set<IUserCooldown>;
 
     constructor(client: IBeewClient, options: ICommandOptions) {
         this.client = client;
@@ -30,19 +30,25 @@ export abstract class Command {
     public hasPermission(user: User, message: Message): boolean {
         if (
             !this.client.userHasPermission(message.member, this.conf.requiredPermissions) ||
-            this.cooldowns.has(user)
+            [...this.cooldowns].filter(cd => cd.user === user && cd.guild === message.guild)
+                .length > 0
         ) {
-            message.channel.send('No permission or on cooldown.');
+            message.channel.send(
+                "You don't have permission for this command or you are on cooldown."
+            );
             return false;
         }
         return true;
     }
 
-    public setCooldown(user: User): void {
-        this.cooldowns.add(user);
+    public setCooldown(user: User, guild: Guild): void {
+        this.cooldowns.add({ user, guild });
 
         setTimeout(() => {
-            this.cooldowns.delete(user);
+            const cooldown = [...this.cooldowns].filter(
+                cd => cd.user === user && cd.guild === guild
+            )[0];
+            this.cooldowns.delete(cooldown);
         }, this.conf.cooldown);
     }
 
