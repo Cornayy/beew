@@ -14,7 +14,7 @@ export default class Usage extends Command {
         });
     }
 
-    public async run(message: Message, args: any[]): Promise<boolean> {
+    public async run(message: Message, args: any[]): Promise<void> {
         const [command] = args;
         const cmd: Command = this.client.commandLoader.commands.find(
             (cmd: Command) => cmd.conf.name === command
@@ -22,7 +22,7 @@ export default class Usage extends Command {
 
         if (!cmd) {
             await super.respond(message.channel, 'Could not find that command.');
-            return false;
+            throw new Error('Command not found');
         }
 
         const embed = new RichEmbed()
@@ -37,6 +37,5 @@ export default class Usage extends Command {
             );
 
         await super.respond(message.channel, embed);
-        return true;
     }
 }

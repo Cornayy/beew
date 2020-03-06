@@ -16,7 +16,7 @@ export default class Ping extends Command {
         });
     }
 
-    public async run(message: Message, args: any[]): Promise<boolean> {
+    public async run(message: Message, args: any[]): Promise<void> {
         const [id] = args;
         const reason = args.slice(1).join(' ');
         const member = message.guild.members.get(id.replace(/[\\<>@#&!]/g, ''));
@@ -26,7 +26,7 @@ export default class Ping extends Command {
                 message.channel,
                 'You have not specified a member or reason. Or did you try thanking yourself? :thinking:'
             );
-            return false;
+            throw new Error('You have not specified a member or reason.');
         }
 
         try {
@@ -41,15 +41,14 @@ export default class Ping extends Command {
 
                     await guild.save();
                     await super.respond(message.channel, `${member.user} has gained 1 karma.`);
-
-                    return true;
                 }
             } else {
                 await super.respond(message.channel, 'Something went wrong.');
+                throw new Error('Something went wrong.');
             }
         } catch (e) {
             Logger.error(e);
+            throw new Error('Something went wrong.');
         }
-        return false;
     }
 }

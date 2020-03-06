@@ -14,9 +14,7 @@ export default class Source extends Command {
         });
     }
 
-    public async run(message: Message): Promise<boolean> {
+    public async run(message: Message): Promise<void> {
         await super.respond(message.channel, 'https://github.com/Cornayy/Beew');
-
-        return true;
     }
 }

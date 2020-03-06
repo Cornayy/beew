@@ -14,7 +14,7 @@ export default class Help extends Command {
         });
     }
 
-    public async run(message: Message): Promise<boolean> {
+    public async run(message: Message): Promise<void> {
         const { commands } = this.client.commandLoader;
         const embed = new RichEmbed()
             .setTitle('Help')
@@ -33,7 +33,5 @@ export default class Help extends Command {
         );
 
         await super.respond(message.channel, embed);
-
-        return true;
     }
 }

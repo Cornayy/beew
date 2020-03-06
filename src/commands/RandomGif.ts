@@ -1,5 +1,5 @@
+import fetch from 'node-fetch';
 import { Message } from 'discord.js';
-import * as fetch from 'node-fetch';
 import { Command } from '../Command';
 import { IBeewClient } from '../interfaces/modules/Beew';
 import Logger from '../utils/Logger';
@@ -16,31 +16,28 @@ export default class RandomGif extends Command {
         });
     }
 
-    public async run(message: Message, args: any[]): Promise<boolean> {
+    public async run(message: Message, args: any[]): Promise<void> {
         try {
             const response = await this.getResponse(args);
             const json = await response.json();
 
             super.respond(message.channel, json.data.url);
-
-            return true;
         } catch (e) {
             Logger.error(e);
+            throw new Error(e);
         }
-
-        return false;
     }
 
     async getResponse(args: any[]): Promise<any> {
         const endpoint = `https://api.giphy.com/v1/gifs/random?api_key=${process.env.GIPHY_KEY}`;
 
         if (args.length > 0) {
-            return fetch.default(
+            return fetch(
                 `https://api.giphy.com/v1/gifs/random?tag=${args.join('+')}&api_key=${
                     process.env.GIPHY_KEY
                 }`
             );
         }
-        return fetch.default(endpoint);
+        return fetch(endpoint);
     }
 }

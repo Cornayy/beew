@@ -1,8 +1,8 @@
 import { GuildMember } from 'discord.js';
 import { Client } from '../Client';
-import Logger from '../utils/Logger';
 import { IEvent } from '../interfaces/modules/Beew';
 import { GuildModel } from '../database/Database';
+import Logger from '../utils/Logger';
 
 export default class GuildMemberRemove implements IEvent {
     public client: Client;

@@ -16,12 +16,12 @@ export default class Info extends Command {
         });
     }
 
-    public async run(message: Message): Promise<boolean> {
+    public async run(message: Message): Promise<void> {
         const member = message.mentions.members.first();
 
         if (!member) {
             await super.respond(message.channel, 'You have not specified a user.');
-            return false;
+            throw new Error('You have not specified a user.');
         }
 
         try {
@@ -49,14 +49,13 @@ export default class Info extends Command {
                         );
 
                     await super.respond(message.channel, embed);
-                    return true;
                 }
             } else {
                 await super.respond(message.channel, 'Something went wrong.');
+                throw new Error('Something went wrong.');
             }
         } catch (e) {
             Logger.error(e);
         }
-        return false;
     }
 }

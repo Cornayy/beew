@@ -23,6 +23,11 @@ export default class Message implements IEvent {
         if (!cmd) return;
         if (!cmd.hasPermission(message.author, message)) return;
 
-        if (await cmd.run(message, argus)) cmd.setCooldown(message.author);
+        try {
+            await cmd.run(message, argus);
+            cmd.setCooldown(message.author);
+        } catch (e) {
+            Logger.warn(e);
+        }
     }
 }

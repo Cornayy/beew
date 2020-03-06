@@ -13,19 +13,19 @@ export class CommandLoader {
     }
 
     public load(client: IBeewClient): void {
-        const dir = client.settings.paths.commands;
+        const { commands } = client.settings.paths;
 
-        readdir(dir, (err, files) => {
+        readdir(commands, (err, files) => {
             if (err) Logger.error(err);
 
             files.forEach(cmd => {
-                if (statSync(path.join(dir, cmd)).isDirectory()) {
+                if (statSync(path.join(commands, cmd)).isDirectory()) {
                     this.load(client);
                 } else {
                     const Command: any = require(path.join(
                         __dirname,
                         '../../',
-                        `${dir}/${cmd.replace('ts', 'js')}`
+                        `${commands}/${cmd.replace('ts', 'js')}`
                     )).default;
                     const command = new Command(client);
 
