@@ -1,8 +1,8 @@
 import * as Discord from 'discord.js';
+import Logger from './utils/Logger';
 import { CommandLoader } from './loaders/CommandLoader';
 import { ISettings, IBeewClient } from './types';
-import { GuildModel } from './database/Database';
-import Logger from './utils/Logger';
+import { GuildModel } from './models/Guild';
 
 export class Client extends Discord.Client implements IBeewClient {
     public settings: ISettings;

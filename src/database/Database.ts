@@ -1,24 +1,5 @@
 import * as Mongoose from 'mongoose';
-import { IUser, IKarma, IGuild } from '../types/mongoose/Mongoose';
 import Logger from '../utils/Logger';
-
-const Karma = new Mongoose.Schema<IKarma>({
-    reason: String,
-    by: String,
-    date: Date
-});
-
-const User = new Mongoose.Schema<IUser>({
-    id: String,
-    karma: [Karma]
-});
-
-const Guild = new Mongoose.Schema<IGuild>({
-    id: String,
-    users: [User]
-});
-
-export const GuildModel: Mongoose.Model<IGuild> = Mongoose.model<IGuild>('Guild', Guild);
 
 export const connect = async (): Promise<void> => {
     try {

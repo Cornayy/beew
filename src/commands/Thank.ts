@@ -1,7 +1,7 @@
 import { Message } from 'discord.js';
 import { Command } from '../Command';
 import { IBeewClient } from '../types';
-import { GuildModel } from '../database/Database';
+import { GuildModel } from '../models/Guild';
 import Logger from '../utils/Logger';
 
 export default class Thank extends Command {

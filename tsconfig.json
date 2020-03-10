@@ -14,7 +14,7 @@
     
     },
     "include": [
-        "src", "config.ts"
+        "src", "src/config/config.ts"
     ],
     "exclude": [
         "node_modules"

@@ -1,6 +1,6 @@
-import { ISettings } from './src/types/Beew';
+import { ISettings } from '../types';
 
-const settings: ISettings = {
+export const settings: ISettings = {
     presence: {
         game: {
             name: '!help for commands',
@@ -13,5 +13,3 @@ const settings: ISettings = {
         events: 'src/events'
     }
 };
-
-export default settings;

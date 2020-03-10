@@ -2,7 +2,7 @@ import { GuildMember } from 'discord.js';
 import { Client } from '../Client';
 import Logger from '../utils/Logger';
 import { IEvent } from '../types';
-import { GuildModel } from '../database/Database';
+import { GuildModel } from '../models/Guild';
 
 export default class GuildMemberAdd implements IEvent {
     public client: Client;
