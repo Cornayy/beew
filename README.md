@@ -44,3 +44,7 @@ Start
 ```
 npm start
 ```
+
+### Contributing
+
+Please fork the repository and open up a pull request.
