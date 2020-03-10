@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import * as Discord from 'discord.js';
 import { Client } from '../Client';
-import { IEvent } from '../interfaces/modules/Beew';
+import { IEvent } from '../types';
 
 export default class Message implements IEvent {
     public client: Client;

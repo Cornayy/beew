@@ -1,7 +1,7 @@
 import { GuildMember } from 'discord.js';
 import { Client } from '../Client';
 import Logger from '../utils/Logger';
-import { IEvent } from '../interfaces/modules/Beew';
+import { IEvent } from '../types';
 import { GuildModel } from '../database/Database';
 
 export default class GuildMemberAdd implements IEvent {

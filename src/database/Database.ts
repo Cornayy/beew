@@ -1,5 +1,5 @@
 import * as Mongoose from 'mongoose';
-import { IUser, IKarma, IGuild } from '../interfaces/modules/Guild';
+import { IUser, IKarma, IGuild } from '../types/mongoose/Mongoose';
 import Logger from '../utils/Logger';
 
 const Karma = new Mongoose.Schema<IKarma>({

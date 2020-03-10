@@ -1,11 +1,5 @@
 import { User, Message, Guild } from 'discord.js';
-import {
-    AnyChannel,
-    IBeewClient,
-    ICommandOptions,
-    EmbedOrMessage,
-    IUserCooldown
-} from './interfaces/modules/Beew';
+import { AnyChannel, IBeewClient, ICommandOptions, EmbedOrMessage, IUserCooldown } from './types';
 
 export abstract class Command {
     protected client: IBeewClient;

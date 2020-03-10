@@ -1,6 +1,6 @@
 import { Message, RichEmbed } from 'discord.js';
 import { Command } from '../Command';
-import { IBeewClient } from '../interfaces/modules/Beew';
+import { IBeewClient } from '../types';
 import { GuildModel } from '../database/Database';
 import Logger from '../utils/Logger';
 

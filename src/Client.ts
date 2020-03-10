@@ -1,6 +1,6 @@
 import * as Discord from 'discord.js';
 import { CommandLoader } from './loaders/CommandLoader';
-import { ISettings, IBeewClient } from './interfaces/modules/Beew';
+import { ISettings, IBeewClient } from './types';
 import { GuildModel } from './database/Database';
 import Logger from './utils/Logger';
 

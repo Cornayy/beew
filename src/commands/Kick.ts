@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 import { Command } from '../Command';
-import { IBeewClient } from '../interfaces/modules/Beew';
+import { IBeewClient } from '../types';
 import Logger from '../utils/Logger';
 
 export default class Kick extends Command {

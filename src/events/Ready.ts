@@ -1,7 +1,7 @@
 import { Client } from '../Client';
 import { connect as connectToDatabase } from '../database/Database';
 import Logger from '../utils/Logger';
-import { IEvent } from '../interfaces/modules/Beew';
+import { IEvent } from '../types';
 
 export default class Ready implements IEvent {
     public client: Client;

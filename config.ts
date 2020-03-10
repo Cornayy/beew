@@ -1,4 +1,4 @@
-import { ISettings } from './src/interfaces/modules/Beew';
+import { ISettings } from './src/types/Beew';
 
 const settings: ISettings = {
     presence: {
