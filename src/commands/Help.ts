@@ -8,17 +8,19 @@ export default class Help extends Command {
             name: 'help',
             description: 'Displays all the commands.',
             category: 'Information',
-            usage: '!help',
+            usage: `${client.settings.prefix}help`,
             cooldown: 1000,
             requiredPermissions: ['READ_MESSAGES']
         });
     }
 
-    public async run(message: Message): Promise<boolean> {
+    public async run(message: Message): Promise<void> {
         const { commands } = this.client.commandLoader;
         const embed = new RichEmbed()
             .setTitle('Help')
-            .setDescription('You can check the usage of a command with the !usage command.')
+            .setDescription(
+                `You can check the usage of a command with the ${this.client.settings.prefix}usage command.`
+            )
             .setColor(0x00b405)
             .setFooter(
                 `${this.client.user.username} at ${new Date().toDateString()}`,
@@ -30,7 +32,5 @@ export default class Help extends Command {
         );
 
         await super.respond(message.channel, embed);
-
-        return true;
     }
 }

@@ -2,7 +2,7 @@ import { Message } from 'discord.js';
 import { Command } from '../Command';
 import { IBeewClient } from '../types';
 import { GuildModel } from '../models/Guild';
-import Logger from '../utils/Logger';
+import { Logger } from '../utils/Logger';
 
 export default class BigThank extends Command {
     constructor(client: IBeewClient) {
@@ -10,13 +10,13 @@ export default class BigThank extends Command {
             name: 'bigthank',
             description: 'Thanks a user and give them a specified amount of karma.',
             category: 'Utility',
-            usage: '!thank @user <amount> <reason>',
+            usage: `${client.settings.prefix}thank @user <amount> <reason>`,
             cooldown: 1000,
             requiredPermissions: ['ADMINISTRATOR']
         });
     }
 
-    public async run(message: Message, args: any[]): Promise<boolean> {
+    public async run(message: Message, args: any[]): Promise<void> {
         const [id] = args;
         const amount = parseInt(args[1], 10);
         const reason = args.slice(2).join(' ');
@@ -27,7 +27,7 @@ export default class BigThank extends Command {
                 message.channel,
                 'You have not specified a member or reason. Or did you try thanking yourself? :thinking:'
             );
-            return false;
+            throw new Error('You have not specified a member or reason.');
         }
 
         try {
@@ -51,15 +51,14 @@ export default class BigThank extends Command {
                         message.channel,
                         `${member.user} has gained ${amount} karma.`
                     );
-
-                    return true;
                 }
             } else {
                 await super.respond(message.channel, 'Something went wrong.');
+                throw new Error('Something went wrong.');
             }
         } catch (e) {
             Logger.error(e);
+            throw new Error(e);
         }
-        return false;
     }
 }

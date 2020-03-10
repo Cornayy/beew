@@ -1,7 +1,7 @@
 import { Message } from 'discord.js';
 import { Command } from '../Command';
 import { IBeewClient } from '../types';
-import Logger from '../utils/Logger';
+import { Logger } from '../utils/Logger';
 
 export default class Clear extends Command {
     constructor(client: IBeewClient) {
@@ -9,28 +9,25 @@ export default class Clear extends Command {
             name: 'clear',
             description: 'Clears the specified amount of messages.',
             category: 'Utility',
-            usage: '!clear <amount>',
+            usage: `${client.settings.prefix}clear <amount>`,
             cooldown: 1000,
             requiredPermissions: ['ADMINISTRATOR']
         });
     }
 
-    public async run(message: Message, args: any[]): Promise<boolean> {
+    public async run(message: Message, args: any[]): Promise<void> {
         const amount = parseInt(args[0], 10);
 
-        if (!amount) return false;
+        if (!amount) throw new Error('No amount argument');
 
         try {
             const messages = await message.channel.fetchMessages({ limit: amount });
             await message.channel.bulkDelete(messages);
 
             super.respond(message.channel, `Cleared ${messages.size} message(s).`);
-
-            return true;
         } catch (e) {
             Logger.error(e);
+            throw new Error(e);
         }
-
-        return false;
     }
 }

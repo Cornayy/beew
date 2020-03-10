@@ -2,6 +2,7 @@
 import * as Discord from 'discord.js';
 import { Client } from '../Client';
 import { IEvent } from '../types';
+import { Logger } from '../utils/Logger';
 
 export default class Message implements IEvent {
     public client: Client;
@@ -22,6 +23,11 @@ export default class Message implements IEvent {
         if (!cmd) return;
         if (!cmd.hasPermission(message.author, message)) return;
 
-        if (await cmd.run(message, argus)) cmd.setCooldown(message.author, message.guild);
+        try {
+            await cmd.run(message, argus);
+            cmd.setCooldown(message.author, message.guild);
+        } catch (e) {
+            Logger.warn(e);
+        }
     }
 }

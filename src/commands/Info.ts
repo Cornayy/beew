@@ -2,7 +2,7 @@ import { Message, RichEmbed } from 'discord.js';
 import { Command } from '../Command';
 import { IBeewClient } from '../types';
 import { GuildModel } from '../models/Guild';
-import Logger from '../utils/Logger';
+import { Logger } from '../utils/Logger';
 
 export default class Info extends Command {
     constructor(client: IBeewClient) {
@@ -10,18 +10,18 @@ export default class Info extends Command {
             name: 'info',
             description: 'Retrieves user information.',
             category: 'Information',
-            usage: '!info @user',
+            usage: `${client.settings.prefix}info @user`,
             cooldown: 1000,
             requiredPermissions: ['READ_MESSAGES']
         });
     }
 
-    public async run(message: Message): Promise<boolean> {
+    public async run(message: Message): Promise<void> {
         const member = message.mentions.members.first();
 
         if (!member) {
             await super.respond(message.channel, 'You have not specified a user.');
-            return false;
+            throw new Error('You have not specified a user.');
         }
 
         try {
@@ -58,14 +58,13 @@ export default class Info extends Command {
                         );
 
                     await super.respond(message.channel, embed);
-                    return true;
                 }
             } else {
                 await super.respond(message.channel, 'Something went wrong.');
+                throw new Error('Something went wrong.');
             }
         } catch (e) {
             Logger.error(e);
         }
-        return false;
     }
 }

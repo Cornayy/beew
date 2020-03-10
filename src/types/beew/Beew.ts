@@ -16,7 +16,6 @@ export interface IBeewClient extends Client {
     settings: ISettings;
     commandLoader: any;
     userHasPermission(user: GuildMember, requiredPermissions: PermissionString[]): boolean;
-    updateGuilds(): Promise<void>;
 }
 
 export interface ICommandOptions {

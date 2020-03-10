@@ -1,8 +1,8 @@
+import fetch from 'node-fetch';
 import { Message } from 'discord.js';
-import * as fetch from 'node-fetch';
 import { Command } from '../Command';
 import { IBeewClient } from '../types';
-import Logger from '../utils/Logger';
+import { Logger } from '../utils/Logger';
 
 export default class RandomGif extends Command {
     constructor(client: IBeewClient) {
@@ -10,13 +10,13 @@ export default class RandomGif extends Command {
             name: 'randomgif',
             description: 'Sends a random gif.',
             category: 'Utility',
-            usage: '!randomgif <tag> (optional)',
+            usage: `${client.settings.prefix}randomgif <tag> (optional)`,
             cooldown: 1000,
             requiredPermissions: ['READ_MESSAGES']
         });
     }
 
-    public async run(message: Message, args: any[]): Promise<boolean> {
+    public async run(message: Message, args: any[]): Promise<void> {
         try {
             const response = await this.getResponse(args);
             const json = await response.json();
@@ -24,25 +24,22 @@ export default class RandomGif extends Command {
             json
                 ? await super.respond(message.channel, json.data.url)
                 : await super.respond(message.channel, 'No gif found.');
-
-            return true;
         } catch (e) {
             Logger.error(e);
+            throw new Error(e);
         }
-
-        return false;
     }
 
     async getResponse(args: any[]): Promise<any> {
         const endpoint = `https://api.giphy.com/v1/gifs/random?api_key=${process.env.GIPHY_KEY}`;
 
         if (args.length > 0) {
-            return fetch.default(
+            return fetch(
                 `https://api.giphy.com/v1/gifs/random?tag=${args.join('+')}&api_key=${
                     process.env.GIPHY_KEY
                 }`
             );
         }
-        return fetch.default(endpoint);
+        return fetch(endpoint);
     }
 }

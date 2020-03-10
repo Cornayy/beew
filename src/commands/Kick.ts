@@ -1,7 +1,7 @@
 import { Message } from 'discord.js';
 import { Command } from '../Command';
 import { IBeewClient } from '../types';
-import Logger from '../utils/Logger';
+import { Logger } from '../utils/Logger';
 
 export default class Kick extends Command {
     constructor(client: IBeewClient) {
@@ -9,16 +9,16 @@ export default class Kick extends Command {
             name: 'kick',
             description: 'Kicks the user, then reinvites in DM.',
             category: 'Information',
-            usage: '!kick @user',
+            usage: `${client.settings.prefix}kick @user`,
             cooldown: 1000,
             requiredPermissions: ['ADMINISTRATOR']
         });
     }
 
-    public async run(message: Message): Promise<boolean> {
+    public async run(message: Message): Promise<void> {
         const member = message.mentions.members.first();
 
-        if (!member) return false;
+        if (!member) throw new Error('No member specified.');
 
         try {
             const dmChannel = await member.createDM();
@@ -35,12 +35,9 @@ export default class Kick extends Command {
 
             await member.kick();
             await super.respond(message.channel, `Succesfully kicked ${member}.`);
-
-            return true;
         } catch (err) {
             Logger.error(err);
+            throw new Error(err);
         }
-
-        return false;
     }
 }

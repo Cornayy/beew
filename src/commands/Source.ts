@@ -8,15 +8,13 @@ export default class Source extends Command {
             name: 'source',
             description: 'Sends a link to the source code.',
             category: 'Information',
-            usage: '!source',
+            usage: `${client.settings.prefix}source`,
             cooldown: 1000,
             requiredPermissions: ['READ_MESSAGES']
         });
     }
 
-    public async run(message: Message): Promise<boolean> {
+    public async run(message: Message): Promise<void> {
         await super.respond(message.channel, 'https://github.com/Cornayy/Beew');
-
-        return true;
     }
 }

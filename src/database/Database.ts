@@ -1,5 +1,5 @@
 import * as Mongoose from 'mongoose';
-import Logger from '../utils/Logger';
+import { Logger } from '../utils/Logger';
 
 export const connect = async (): Promise<void> => {
     try {

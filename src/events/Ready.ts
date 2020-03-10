@@ -1,6 +1,7 @@
+import { updateGuilds, updateGuildMembers } from '../database/Synchronize';
 import { Client } from '../Client';
 import { connect as connectToDatabase } from '../database/Database';
-import Logger from '../utils/Logger';
+import { Logger } from '../utils/Logger';
 import { IEvent } from '../types';
 
 export default class Ready implements IEvent {
@@ -15,7 +16,7 @@ export default class Ready implements IEvent {
         this.client.user.setPresence(this.client.settings.presence);
 
         await connectToDatabase();
-        await this.client.updateGuilds();
-        await this.client.updateGuildMembers();
+        await updateGuilds(this.client.guilds);
+        await updateGuildMembers(this.client.guilds);
     }
 }

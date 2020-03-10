@@ -1,10 +1,10 @@
 import { GuildMember } from 'discord.js';
 import { Client } from '../Client';
-import { Logger } from '../utils/Logger';
 import { IEvent } from '../types';
 import { GuildModel } from '../models/Guild';
+import { Logger } from '../utils/Logger';
 
-export default class GuildMemberAdd implements IEvent {
+export default class GuildMemberRemove implements IEvent {
     public client: Client;
 
     constructor(client: Client) {
@@ -18,11 +18,8 @@ export default class GuildMemberAdd implements IEvent {
             const { id } = member.guild;
             const guild = await GuildModel.findOne({ id: id }).exec();
 
-            if (guild && !guild.users.find(user => user.id === member.id)) {
-                guild.users.push({
-                    id: member.id,
-                    karma: []
-                });
+            if (guild) {
+                guild.users = guild.users.filter(user => user.id !== member.id);
 
                 await guild.save();
             }

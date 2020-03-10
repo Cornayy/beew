@@ -52,5 +52,5 @@ export abstract class Command {
         return this;
     }
 
-    public abstract async run(message: Message, args: string[]): Promise<boolean>;
+    public abstract async run(message: Message, args: string[]): Promise<void>;
 }

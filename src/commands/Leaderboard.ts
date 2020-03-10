@@ -2,7 +2,7 @@ import { Message, RichEmbed } from 'discord.js';
 import { Command } from '../Command';
 import { IBeewClient } from '../types';
 import { GuildModel } from '../models/Guild';
-import Logger from '../utils/Logger';
+import { Logger } from '../utils/Logger';
 
 export default class Leaderboard extends Command {
     constructor(client: IBeewClient) {
@@ -10,13 +10,13 @@ export default class Leaderboard extends Command {
             name: 'leaderboard',
             description: 'Sends a leaderboard of top ten users sorted by karma.',
             category: 'Information',
-            usage: '!leaderboard',
+            usage: `${client.settings.prefix}leaderboard`,
             cooldown: 1000,
             requiredPermissions: ['READ_MESSAGES']
         });
     }
 
-    public async run(message: Message): Promise<boolean> {
+    public async run(message: Message): Promise<void> {
         try {
             const guild = await GuildModel.findOne({ id: message.guild.id }).exec();
 
@@ -40,13 +40,10 @@ export default class Leaderboard extends Command {
                 });
 
                 await super.respond(message.channel, embed);
-                return true;
             }
         } catch (e) {
             Logger.error(e);
-            return false;
+            throw new Error(e);
         }
-
-        return false;
     }
 }

@@ -1,4 +1,4 @@
-export default class Logger {
+export class Logger {
     public static info(msg: string): void {
         console.log(`\x1b[37;42minfo\x1b[32;49m ${msg}\x1b[0m`);
     }
